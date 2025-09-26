@@ -1,5 +1,4 @@
-//your code here
-const wholeimages=document.querySelectorAll(".image")
+ const wholeimages=document.querySelectorAll(".image")
         //console.log(wholeimages)
         wholeimages.forEach((item)=>{
             //dragstart event adding
@@ -20,15 +19,20 @@ const wholeimages=document.querySelectorAll(".image")
                 e.preventDefault()
                 const targettedElementurl=getComputedStyle(e.target).backgroundImage
                // console.log(targettedElementurl)
+              
                 const droppedElement=e.dataTransfer.getData("text")
+                //draggin element---
                 const drag=document.getElementById(droppedElement)
-                //console.log(drag)
+                const draggingtext=drag.innerText
                 const droppedElementurl=getComputedStyle(drag).backgroundImage
                 //console.log(droppedElementurl)
                 const targettedElement=e.target
+                 const targettext=targettedElement.innerText
                 console.log(droppedElement,targettedElement)
                 targettedElement.style.backgroundImage=droppedElementurl
                 drag.style.backgroundImage=targettedElementurl
+                targettedElement.innerText=draggingtext
+                drag.innerText=targettext
                
             })
         })
