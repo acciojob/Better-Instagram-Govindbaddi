@@ -11,12 +11,50 @@
   <body>
     <h1 style="text-align: center">Arrange Images by drag and drop</h1>
     <div class="flex" id="parent">
-      <div draggable="true" class="image" id="drag1">Image 1</div>
-      <div draggable="true" class="image" id="drag2">Image 2</div>
-      <div draggable="true" class="image" id="drag3">Image 3</div>
-      <div draggable="true" class="image" id="drag4">Image 4</div>
-      <div draggable="true" class="image" id="drag5">Image 5</div>
-      <div draggable="true" class="image" id="drag6">Image 6</div>
+      <div draggable="true" class="image" id="div1">Image 1</div>
+      <div draggable="true" class="image" id="div2">Image 2</div>
+      <div draggable="true" class="image" id="div3">Image 3</div>
+      <div draggable="true" class="image" id="div4">Image 4</div>
+      <div draggable="true" class="image" id="div5">Image 5</div>
+      <div draggable="true" class="image" id="div6">Image 6</div>
     </div>
+	  <script>
+		  const wholeimages=document.querySelectorAll(".image")
+        //console.log(wholeimages)
+        wholeimages.forEach((item)=>{
+            //dragstart event adding
+            //console.log(item)
+            item.addEventListener("dragstart",(e)=>{
+               const drageddElement=getComputedStyle(item).backgroundImage
+               e.dataTransfer.setData("text",item.id)
+                //e.dataTransfer.setData("text",drageddElement) 
+                //console.log("drag started",e,e.target,item,drageddElement)
+            })
+            item.addEventListener("dragover",(e)=>{
+                e.preventDefault()
+               
+            })
+            item.addEventListener("drop",(e)=>{
+                e.preventDefault()
+                const targettedElementurl=getComputedStyle(e.target).backgroundImage
+               // console.log(targettedElementurl)
+              
+                const droppedElement=e.dataTransfer.getData("text")
+                //draggin element---
+                const drag=document.getElementById(droppedElement)
+                const draggingtext=drag.innerText
+                const droppedElementurl=getComputedStyle(drag).backgroundImage
+                //console.log(droppedElementurl)
+                const targettedElement=e.target
+                 const targettext=targettedElement.innerText
+                console.log(droppedElement,targettedElement)
+                targettedElement.style.backgroundImage=droppedElementurl
+                drag.style.backgroundImage=targettedElementurl
+                targettedElement.innerText=draggingtext
+                drag.innerText=targettext
+               
+            })
+        })
+	  </script>
   </body>
 </html>
