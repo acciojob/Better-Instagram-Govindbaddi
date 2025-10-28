@@ -1,4 +1,4 @@
- const wholeimages=document.querySelectorAll(".image")
+const wholeimages=document.querySelectorAll(".image")
         //console.log(wholeimages)
         wholeimages.forEach((item)=>{
             //dragstart event adding
@@ -6,9 +6,7 @@
             item.addEventListener("dragstart",(e)=>{
                const drageddElement=getComputedStyle(item).backgroundImage
                e.dataTransfer.setData("text",item.id)
-             //  e.dataTransfer.setData("text",drageddElement)
-
-               
+                //e.dataTransfer.setData("text",drageddElement) 
                 //console.log("drag started",e,e.target,item,drageddElement)
             })
             item.addEventListener("dragover",(e)=>{
